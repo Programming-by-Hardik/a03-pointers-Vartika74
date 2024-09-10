@@ -42,23 +42,54 @@ int main() {
 //---------------------------------
 
 
+#include <stdio.h>
+
 // Function to swap two integers using pointers
 void swap(int *a, int *b) {
-    //Write the function description
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-
+int main() {
+    int x = 5, y = 10;
+    printf("Before swapping: x = %d, y = %d\n", x, y);
+    
+    // Call the swap function
+    swap(&x, &y);
+    
+    printf("After swapping: x = %d, y = %d\n", x, y);
+    
+    return 0;
+}
 
 
 
 
 
 }
+#include <stdio.h>
 
 // Function to find the maximum value in an array using pointers
 int findMax(int *arr, int length) {
-    //Write the fucntion description 
+    int max = *arr;  // Initialize max with the first element of the array
+    for (int i = 1; i < length; i++) {
+        if (*(arr + i) > max) {
+            max = *(arr + i);  // Update max if current element is greater
+        }
+    }
+    return max;
+}
 
-
+int main() {
+    int arr[] = {3, 5, 7, 2, 8, -1, 4, 10, 12};
+    int length = sizeof(arr) / sizeof(arr[0]);
+    
+    int maxVal = findMax(arr, length);  // Find the maximum value
+    printf("Maximum value in the array is: %d\n", maxVal);
+    
+    return 0;
+}
 
 
 
@@ -67,12 +98,44 @@ int findMax(int *arr, int length) {
   
 }
 
+#include <stdio.h>
+
 // Function to reverse an array using pointers
 void reverseArray(int *arr, int length) {
-    //Write the function description 
+    int *start = arr;           // Pointer to the beginning of the array
+    int *end = arr + length - 1; // Pointer to the end of the array
+    int temp;
 
+    // Swap the elements from the start and end using a loop
+    while (start < end) {
+        temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;  // Move start pointer forward
+        end--;    // Move end pointer backward
+    }
+}
 
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+    int length = sizeof(arr) / sizeof(arr[0]);
 
+    printf("Original array: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    reverseArray(arr, length);  // Reverse the array
+
+    printf("Reversed array: ");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
 
 
 
